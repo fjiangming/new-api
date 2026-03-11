@@ -34,7 +34,7 @@
     <img src="https://trendshift.io/api/badge/repositories/20180" alt="QuantumNous%2Fnew-api | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
   </a>
   <br>
-  <a href="https://hellogithub.com/repository/QuantumNous/new-api" target="_blank">
+  <a href="https://hellogithub.com/repository/fjiangming/new-api" target="_blank">
     <img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=539ac4217e69431684ad4a0bab768811&claim_uid=tbFPfKIDHpc4TzR" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54" />
   </a>
   <a href="https://www.producthunt.com/products/new-api/launches/new-api?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-new-api" target="_blank" rel="noopener noreferrer">
@@ -107,7 +107,7 @@
 
 ```bash
 # 複製項目
-git clone https://github.com/QuantumNous/new-api.git
+git clone https://github.com/fjiangming/new-api.git
 cd new-api
 
 # 編輯 docker-compose.yml 配置
@@ -156,7 +156,7 @@ docker run --name new-api -d --restart always \
 
 <div align="center">
 
-### 📖 [官方文件](https://docs.newapi.pro/zh/docs) | [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/QuantumNous/new-api)
+### 📖 [官方文件](https://docs.newapi.pro/zh/docs) | [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/fjiangming/new-api)
 
 </div>
 
@@ -199,7 +199,7 @@ docker run --name new-api -d --restart always \
 - 🤖 LinuxDO 授權登錄
 - 📱 Telegram 授權登錄
 - 🔑 OIDC 統一認證
-- 🔍 Key 查詢使用額度（配合 [neko-api-key-tool](https://github.com/Calcium-Ion/neko-api-key-tool)）
+- 🔍 Key 查詢使用額度（配合 [neko-api-key-tool](https://github.com/fjiangming/neko-api-key-tool)）
 
 ### 🚀 高級功能
 
@@ -333,7 +333,7 @@ docker run --name new-api -d --restart always \
 
 ```bash
 # 複製項目
-git clone https://github.com/QuantumNous/new-api.git
+git clone https://github.com/fjiangming/new-api.git
 cd new-api
 
 # 編輯配置
@@ -413,8 +413,8 @@ docker run --name new-api -d --restart always \
 
 | 項目 | 說明 |
 |------|------|
-| [neko-api-key-tool](https://github.com/Calcium-Ion/neko-api-key-tool) | Key 額度查詢工具 |
-| [new-api-horizon](https://github.com/Calcium-Ion/new-api-horizon) | New API 高性能優化版 |
+| [neko-api-key-tool](https://github.com/fjiangming/neko-api-key-tool) | Key 額度查詢工具 |
+| [new-api-horizon](https://github.com/fjiangming/new-api-horizon) | New API 高性能優化版 |
 
 ---
 

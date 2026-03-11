@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2025 QuantumNous
+Copyright (C) 2025 fjiangming
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -14,7 +14,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-For commercial licensing, please contact support@quantumnous.com
+For commercial licensing, please contact support@fjiangming.com
 */
 
 import React, { useEffect, useState, useMemo, useContext } from 'react';
@@ -143,7 +143,7 @@ const FooterBar = () => {
                     Midjourney-Proxy
                   </a>
                   <a
-                    href='https://github.com/Calcium-Ion/neko-api-key-tool'
+                    href='https://github.com/fjiangming/neko-api-key-tool'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='!text-semi-color-text-1'
@@ -159,7 +159,7 @@ const FooterBar = () => {
                 </p>
                 <div className='flex flex-col gap-4'>
                   <a
-                    href='https://github.com/Calcium-Ion/new-api-horizon'
+                    href='https://github.com/fjiangming/new-api-horizon'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='!text-semi-color-text-1'
@@ -200,7 +200,7 @@ const FooterBar = () => {
               {t('设计与开发由')}{' '}
             </span>
             <a
-              href='https://github.com/QuantumNous/new-api'
+              href='https://github.com/fjiangming/new-api'
               target='_blank'
               rel='noopener noreferrer'
               className='!text-semi-color-primary font-medium'
@@ -229,7 +229,7 @@ const FooterBar = () => {
           <div className='absolute bottom-2 right-4 text-xs !text-semi-color-text-2 opacity-70'>
             <span>{t('设计与开发由')} </span>
             <a
-              href='https://github.com/QuantumNous/new-api'
+              href='https://github.com/fjiangming/new-api'
               target='_blank'
               rel='noopener noreferrer'
               className='!text-semi-color-primary font-medium'

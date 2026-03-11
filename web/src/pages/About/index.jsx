@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2025 QuantumNous
+Copyright (C) 2025 fjiangming
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -14,7 +14,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-For commercial licensing, please contact support@quantumnous.com
+For commercial licensing, please contact support@fjiangming.com
 */
 
 import React, { useEffect, useState } from 'react';
@@ -64,16 +64,16 @@ const About = () => {
       <p>{t('可在设置页面设置关于内容，支持 HTML & Markdown')}</p>
       {t('New API项目仓库地址：')}
       <a
-        href='https://github.com/QuantumNous/new-api'
+        href='https://github.com/fjiangming/new-api'
         target='_blank'
         rel='noopener noreferrer'
         className='!text-semi-color-primary'
       >
-        https://github.com/QuantumNous/new-api
+        https://github.com/fjiangming/new-api
       </a>
       <p>
         <a
-          href='https://github.com/QuantumNous/new-api'
+          href='https://github.com/fjiangming/new-api'
           target='_blank'
           rel='noopener noreferrer'
           className='!text-semi-color-primary'
@@ -82,12 +82,12 @@ const About = () => {
         </a>{' '}
         {t('© {{currentYear}}', { currentYear })}{' '}
         <a
-          href='https://github.com/QuantumNous'
+          href='https://github.com/fjiangming'
           target='_blank'
           rel='noopener noreferrer'
           className='!text-semi-color-primary'
         >
-          QuantumNous
+          fjiangming
         </a>{' '}
         {t('| 基于')}{' '}
         <a
