@@ -33,6 +33,10 @@ import { marked } from 'marked';
 import { useTranslation } from 'react-i18next';
 import { StatusContext } from '../../context/Status';
 import Text from '@douyinfe/semi-ui/lib/es/typography/text';
+import {
+  GITHUB_RELEASES_API_URL,
+  getGitHubReleaseUrl,
+} from '../../constants';
 
 const LEGAL_USER_AGREEMENT_KEY = 'legal.user_agreement';
 const LEGAL_PRIVACY_POLICY_KEY = 'legal.privacy_policy';
@@ -238,12 +242,12 @@ const OtherSetting = () => {
       // Option 1: Use a public CORS proxy service
       // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
       // const res = await API.get(
-      //   `${proxyUrl}https://api.github.com/repos/fjiangming/new-api/releases/latest`,
+      //   `${proxyUrl}${GITHUB_RELEASES_API_URL}`,
       // );
 
       // Option 2: Use the JSON proxy approach which often works better with GitHub API
       const res = await fetch(
-        'https://api.github.com/repos/fjiangming/new-api/releases/latest',
+        GITHUB_RELEASES_API_URL,
         {
           headers: {
             Accept: 'application/json',
@@ -303,7 +307,7 @@ const OtherSetting = () => {
   // Function to open GitHub release page
   const openGitHubRelease = () => {
     window.open(
-      `https://github.com/fjiangming/new-api/releases/tag/${updateData.tag_name}`,
+      getGitHubReleaseUrl(updateData.tag_name),
       '_blank',
     );
   };

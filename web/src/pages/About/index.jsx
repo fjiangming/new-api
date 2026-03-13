@@ -26,6 +26,7 @@ import {
   IllustrationConstructionDark,
 } from '@douyinfe/semi-illustrations';
 import { useTranslation } from 'react-i18next';
+import { GITHUB_REPO_OWNER_URL, GITHUB_REPO_URL } from '../../constants';
 
 const About = () => {
   const { t } = useTranslation();
@@ -64,16 +65,16 @@ const About = () => {
       <p>{t('可在设置页面设置关于内容，支持 HTML & Markdown')}</p>
       {t('New API项目仓库地址：')}
       <a
-        href='https://github.com/fjiangming/new-api'
+        href={GITHUB_REPO_URL}
         target='_blank'
         rel='noopener noreferrer'
         className='!text-semi-color-primary'
       >
-        https://github.com/fjiangming/new-api
+        {GITHUB_REPO_URL}
       </a>
       <p>
         <a
-          href='https://github.com/fjiangming/new-api'
+          href={GITHUB_REPO_URL}
           target='_blank'
           rel='noopener noreferrer'
           className='!text-semi-color-primary'
@@ -82,7 +83,7 @@ const About = () => {
         </a>{' '}
         {t('© {{currentYear}}', { currentYear })}{' '}
         <a
-          href='https://github.com/fjiangming'
+          href={GITHUB_REPO_OWNER_URL}
           target='_blank'
           rel='noopener noreferrer'
           className='!text-semi-color-primary'

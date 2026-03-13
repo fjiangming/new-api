@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '@douyinfe/semi-ui';
 import { getFooterHTML, getLogo, getSystemName } from '../../helpers';
 import { StatusContext } from '../../context/Status';
+import { GITHUB_REPO_URL } from '../../constants';
 
 const FooterBar = () => {
   const { t } = useTranslation();
@@ -200,7 +201,7 @@ const FooterBar = () => {
               {t('设计与开发由')}{' '}
             </span>
             <a
-              href='https://github.com/fjiangming/new-api'
+              href={GITHUB_REPO_URL}
               target='_blank'
               rel='noopener noreferrer'
               className='!text-semi-color-primary font-medium'
@@ -229,7 +230,7 @@ const FooterBar = () => {
           <div className='absolute bottom-2 right-4 text-xs !text-semi-color-text-2 opacity-70'>
             <span>{t('设计与开发由')} </span>
             <a
-              href='https://github.com/fjiangming/new-api'
+              href={GITHUB_REPO_URL}
               target='_blank'
               rel='noopener noreferrer'
               className='!text-semi-color-primary font-medium'

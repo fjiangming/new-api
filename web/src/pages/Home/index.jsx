@@ -28,6 +28,7 @@ import {
 import { API, showError, copy, showSuccess } from '../../helpers';
 import { useIsMobile } from '../../hooks/common/useIsMobile';
 import { API_ENDPOINTS } from '../../constants/common.constant';
+import { GITHUB_REPO_URL } from '../../constants';
 import { StatusContext } from '../../context/Status';
 import { useActualTheme } from '../../context/Theme';
 import { marked } from 'marked';
@@ -231,7 +232,7 @@ const Home = () => {
                       icon={<IconGithubLogo />}
                       onClick={() =>
                         window.open(
-                          'https://github.com/fjiangming/new-api',
+                          GITHUB_REPO_URL,
                           '_blank',
                         )
                       }
