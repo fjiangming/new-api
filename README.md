@@ -110,14 +110,14 @@
 
 ```bash
 # Clone the project
-git clone https://github.com/fjiangming/new-api.git
+git clone -b dev https://github.com/fjiangming/new-api.git
 cd new-api
 
 # Edit docker-compose.yml configuration
 nano docker-compose.yml
 
 # Start the service
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 <details>
@@ -125,14 +125,14 @@ docker-compose up -d
 
 ```bash
 # Pull the latest image
-docker pull fjiangming/new-api:latest
+docker build -t new-api:dev-local .
 
 # Using SQLite (default)
 docker run --name new-api -d --restart always \
   -p 3000:3000 \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  fjiangming/new-api:latest
+  new-api:dev-local
 
 # Using MySQL
 docker run --name new-api -d --restart always \
@@ -140,7 +140,7 @@ docker run --name new-api -d --restart always \
   -e SQL_DSN="root:123456@tcp(localhost:3306)/oneapi" \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  fjiangming/new-api:latest
+  new-api:dev-local
 ```
 
 > **💡 Tip:** `-v ./data:/data` will save data in the `data` folder of the current directory, you can also change it to an absolute path like `-v /your/custom/path:/data`
@@ -336,14 +336,14 @@ docker run --name new-api -d --restart always \
 
 ```bash
 # Clone the project
-git clone https://github.com/fjiangming/new-api.git
+git clone -b dev https://github.com/fjiangming/new-api.git
 cd new-api
 
 # Edit configuration
 nano docker-compose.yml
 
 # Start service
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 </details>

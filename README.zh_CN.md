@@ -110,14 +110,14 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/fjiangming/new-api.git
+git clone -b dev https://github.com/fjiangming/new-api.git
 cd new-api
 
 # 编辑 docker-compose.yml 配置
 nano docker-compose.yml
 
 # 启动服务
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 <details>
@@ -125,14 +125,14 @@ docker-compose up -d
 
 ```bash
 # 拉取最新镜像
-docker pull fjiangming/new-api:latest
+docker build -t new-api:dev-local .
 
 # 使用 SQLite（默认）
 docker run --name new-api -d --restart always \
   -p 3000:3000 \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  fjiangming/new-api:latest
+  new-api:dev-local
 
 # 使用 MySQL
 docker run --name new-api -d --restart always \
@@ -140,7 +140,7 @@ docker run --name new-api -d --restart always \
   -e SQL_DSN="root:123456@tcp(localhost:3306)/oneapi" \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  fjiangming/new-api:latest
+  new-api:dev-local
 ```
 
 > **💡 提示：** `-v ./data:/data` 会将数据保存在当前目录的 `data` 文件夹中，你也可以改为绝对路径如 `-v /your/custom/path:/data`
@@ -336,14 +336,14 @@ docker run --name new-api -d --restart always \
 
 ```bash
 # 克隆项目
-git clone https://github.com/fjiangming/new-api.git
+git clone -b dev https://github.com/fjiangming/new-api.git
 cd new-api
 
 # 编辑配置
 nano docker-compose.yml
 
 # 启动服务
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 </details>
