@@ -106,33 +106,68 @@
 
 ## 🚀 快速开始
 
-### 使用 Docker Compose（推荐）
+### 使用 Docker Compose 部署（推荐）
+
+每次推送到 `dev` 分支时，GitHub Actions 会自动构建 Docker 镜像并发布到 GitHub Container Registry (GHCR)，支持 `amd64` 和 `arm64` 双架构。
+
+**1. 创建项目目录并下载配置文件：**
 
 ```bash
-# 克隆项目
-git clone -b dev https://github.com/fjiangming/new-api.git
-cd new-api
+mkdir -p new-api && cd new-api
 
-# 编辑 docker-compose.yml 配置
-nano docker-compose.yml
-
-# 启动服务
-docker-compose up -d --build
+# 下载 docker-compose.yml（仅首次部署需要）
+curl -sL https://raw.githubusercontent.com/fjiangming/new-api/dev/docker-compose.yml -o docker-compose.yml
 ```
 
-<details>
-<summary><strong>使用 Docker 命令</strong></summary>
+**2. 修改 `docker-compose.yml` 配置：**
+
+将 `docker-compose.yml` 中的 `build` 和 `image` 配置替换为预构建镜像：
+
+```yaml
+services:
+  new-api:
+    # 注释或删除以下两行：
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/fjiangming/new-api:dev   # 使用预构建镜像
+    # ... 其余配置保持不变
+```
+
+> ⚠️ **重要：** 请务必修改默认的数据库和 Redis 密码！
+
+**3. 启动服务：**
+
+```bash
+docker-compose up -d
+```
+
+### 更新到最新版本
 
 ```bash
 # 拉取最新镜像
-docker build -t new-api:dev-local .
+docker-compose pull
+
+# 重启服务（自动使用新镜像，数据不受影响）
+docker-compose up -d
+
+# 清理旧镜像（可选）
+docker image prune -f
+```
+
+<details>
+<summary><strong>使用 Docker 命令（不使用 Compose）</strong></summary>
+
+```bash
+# 拉取最新镜像
+docker pull ghcr.io/fjiangming/new-api:dev
 
 # 使用 SQLite（默认）
 docker run --name new-api -d --restart always \
   -p 3000:3000 \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  new-api:dev-local
+  ghcr.io/fjiangming/new-api:dev
 
 # 使用 MySQL
 docker run --name new-api -d --restart always \
@@ -140,10 +175,34 @@ docker run --name new-api -d --restart always \
   -e SQL_DSN="root:123456@tcp(localhost:3306)/oneapi" \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  new-api:dev-local
+  ghcr.io/fjiangming/new-api:dev
+```
+
+**更新方式：**
+
+```bash
+docker pull ghcr.io/fjiangming/new-api:dev
+docker stop new-api && docker rm new-api
+# 重新执行上面的 docker run 命令
+docker image prune -f
 ```
 
 > **💡 提示：** `-v ./data:/data` 会将数据保存在当前目录的 `data` 文件夹中，你也可以改为绝对路径如 `-v /your/custom/path:/data`
+
+</details>
+
+<details>
+<summary><strong>从源码构建（高级）</strong></summary>
+
+如果你需要自定义代码或无法访问 GHCR，可以克隆源码后本地构建：
+
+```bash
+git clone -b dev https://github.com/fjiangming/new-api.git
+cd new-api
+docker-compose up -d --build
+```
+
+> **⚠️ 注意：** 源码构建需要较大内存（建议 4GB+），低配服务器可能出现 OOM 错误。
 
 </details>
 

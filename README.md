@@ -108,31 +108,66 @@
 
 ### Using Docker Compose (Recommended)
 
+Docker images are automatically built and published to GitHub Container Registry (GHCR) on every push to the `dev` branch, supporting both `amd64` and `arm64` architectures.
+
+**1. Create project directory and download the configuration file:**
+
 ```bash
-# Clone the project
-git clone -b dev https://github.com/fjiangming/new-api.git
-cd new-api
+mkdir -p new-api && cd new-api
 
-# Edit docker-compose.yml configuration
-nano docker-compose.yml
-
-# Start the service
-docker-compose up -d --build
+# Download docker-compose.yml (first-time deployment only)
+curl -sL https://raw.githubusercontent.com/fjiangming/new-api/dev/docker-compose.yml -o docker-compose.yml
 ```
 
-<details>
-<summary><strong>Using Docker Commands</strong></summary>
+**2. Modify `docker-compose.yml`:**
+
+Replace the `build` and `image` configuration with the pre-built image:
+
+```yaml
+services:
+  new-api:
+    # Comment out or remove these lines:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/fjiangming/new-api:dev   # Use pre-built image
+    # ... keep the rest as is
+```
+
+> ⚠️ **Important:** Make sure to change all default database and Redis passwords!
+
+**3. Start the service:**
+
+```bash
+docker-compose up -d
+```
+
+### Updating to the Latest Version
 
 ```bash
 # Pull the latest image
-docker build -t new-api:dev-local .
+docker-compose pull
+
+# Restart the service (data is preserved)
+docker-compose up -d
+
+# Clean up old images (optional)
+docker image prune -f
+```
+
+<details>
+<summary><strong>Using Docker Commands (without Compose)</strong></summary>
+
+```bash
+# Pull the latest image
+docker pull ghcr.io/fjiangming/new-api:dev
 
 # Using SQLite (default)
 docker run --name new-api -d --restart always \
   -p 3000:3000 \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  new-api:dev-local
+  ghcr.io/fjiangming/new-api:dev
 
 # Using MySQL
 docker run --name new-api -d --restart always \
@@ -140,10 +175,34 @@ docker run --name new-api -d --restart always \
   -e SQL_DSN="root:123456@tcp(localhost:3306)/oneapi" \
   -e TZ=Asia/Shanghai \
   -v ./data:/data \
-  new-api:dev-local
+  ghcr.io/fjiangming/new-api:dev
+```
+
+**To update:**
+
+```bash
+docker pull ghcr.io/fjiangming/new-api:dev
+docker stop new-api && docker rm new-api
+# Re-run the docker run command above
+docker image prune -f
 ```
 
 > **💡 Tip:** `-v ./data:/data` will save data in the `data` folder of the current directory, you can also change it to an absolute path like `-v /your/custom/path:/data`
+
+</details>
+
+<details>
+<summary><strong>Building from Source (Advanced)</strong></summary>
+
+If you need to customize the code or cannot access GHCR, you can clone and build locally:
+
+```bash
+git clone -b dev https://github.com/fjiangming/new-api.git
+cd new-api
+docker-compose up -d --build
+```
+
+> **⚠️ Note:** Building from source requires significant memory (4GB+ recommended). Low-memory servers may encounter OOM errors.
 
 </details>
 
