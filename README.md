@@ -349,6 +349,35 @@ docker-compose up -d --build
 </details>
 
 <details>
+<summary><strong>Method 1 Upgrade</strong></summary>
+
+```bash
+# Enter the project directory
+cd /path/to/new-api
+
+# Pull the latest code
+git pull origin dev
+
+# Rebuild and restart (data will not be lost)
+docker-compose up -d --build
+```
+
+> **💡 Tip:** `--build` recompiles backend and frontend, taking about 3-10 minutes. The old container keeps running during build, so service downtime is minimal (a few seconds).
+
+> **⚠️ Build failed (exit code 137)?** This is caused by insufficient memory. Add Swap space and retry:
+> ```bash
+> sudo fallocate -l 4G /swapfile
+> sudo chmod 600 /swapfile
+> sudo mkswap /swapfile
+> sudo swapon /swapfile
+> docker-compose up -d --build
+> # After successful build, you can remove swap to free disk space:
+> # sudo swapoff /swapfile && sudo rm /swapfile
+> ```
+
+</details>
+
+<details>
 <summary><strong>Method 2: Docker Commands</strong></summary>
 
 **Using SQLite:**

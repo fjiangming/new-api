@@ -349,6 +349,35 @@ docker-compose up -d --build
 </details>
 
 <details>
+<summary><strong>方式 1 升级更新</strong></summary>
+
+```bash
+# 进入项目目录
+cd /path/to/new-api
+
+# 拉取最新代码
+git pull origin dev
+
+# 重新构建并启动（数据不会丢失）
+docker-compose up -d --build
+```
+
+> **💡 提示：** `--build` 会重新编译后端和前端，构建时间约 3-10 分钟，构建期间旧容器仍在运行，服务中断时间极短（几秒）。
+
+> **⚠️ 构建失败（exit code 137）？** 这是内存不足导致的，请先添加 Swap 空间后重试：
+> ```bash
+> sudo fallocate -l 4G /swapfile
+> sudo chmod 600 /swapfile
+> sudo mkswap /swapfile
+> sudo swapon /swapfile
+> docker-compose up -d --build
+> # 构建成功后可删除 swap 释放磁盘空间：
+> # sudo swapoff /swapfile && sudo rm /swapfile
+> ```
+
+</details>
+
+<details>
 <summary><strong>方式 2：Docker 命令</strong></summary>
 
 **使用 SQLite：**
